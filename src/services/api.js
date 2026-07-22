@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000https://ai-resume-analyser-backend-vb0m.onrender.com/api",
+  baseURL: "https://ai-resume-analyser-backend-vb0m.onrender.com/api",
 });
 
 // ======================
