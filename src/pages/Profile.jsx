@@ -18,14 +18,14 @@ function Profile() {
 
   return (
     <div className="min-h-screen bg-[#f8fafc] p-4 text-slate-900 md:p-6">
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto w-full max-w-4xl">
         <h1 className="mb-6 text-2xl font-bold text-slate-900 md:text-3xl">
           My Profile
         </h1>
 
-        <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-[0_16px_45px_rgba(15,23,42,.07)] md:p-6">
+       <div className="w-full rounded-[28px] border border-slate-200 bg-white p-4 shadow-[0_16px_45px_rgba(15,23,42,.07)] sm:p-5 md:p-6 lg:p-8">
           {/* Profile Image */}
-          <div className="flex flex-col items-center border-b border-slate-100 pb-6">
+          <div className="flex flex-col items-center border-b border-slate-100 pb-6 text-center">
             <FaUserCircle className="text-8xl text-sky-600 md:text-9xl" />
             <h2 className="mt-4 text-2xl font-bold text-slate-900 md:text-3xl">
               {userName}
@@ -36,7 +36,7 @@ function Profile() {
           </div>
 
           {/* Profile Form */}
-          <div className="mt-6 grid gap-6 md:grid-cols-2 md:mt-10">
+          <div className="mt-6 grid grid-cols-1 gap-5 md:mt-10 md:grid-cols-2">
             <div>
               <label className="mb-2 flex items-center gap-2 text-sm font-semibold text-slate-600 md:text-base">
                 <FaUser />
@@ -71,7 +71,7 @@ function Profile() {
                 localStorage.setItem("userName", userName);
                 alert("Profile updated!");
               }}
-              className="rounded-2xl bg-sky-600 px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_25px_rgba(14,165,233,.25)] transition-all duration-300 hover:bg-sky-700 hover:scale-[1.01] hover:shadow-[0_14px_30px_rgba(14,165,233,.35)] md:px-8 md:py-4 md:text-base"
+             className="w-full rounded-2xl bg-sky-600 px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_25px_rgba(14,165,233,.25)] transition-all duration-300 hover:bg-sky-700 hover:scale-[1.01] hover:shadow-[0_14px_30px_rgba(14,165,233,.35)] sm:w-auto md:px-8 md:py-4 md:text-base"
             >
               Save Changes
             </button>

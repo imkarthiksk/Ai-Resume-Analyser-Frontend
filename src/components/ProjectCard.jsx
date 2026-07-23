@@ -2,10 +2,17 @@ function ProjectCard({ projects = [] }) {
   return (
     <div
       className="
-        rounded-2xl border border-slate-200 bg-white p-5 shadow-sm
-        transition-all duration-300
-        hover:scale-[1.02] hover:shadow-[0_14px_40px_rgba(15,23,42,.12)]
+        w-full
+        rounded-2xl
+        border border-slate-200
+        bg-white
+        p-4
+        sm:p-5
         md:p-6
+        shadow-sm
+        transition-all duration-300
+        hover:scale-[1.02]
+        hover:shadow-[0_14px_40px_rgba(15,23,42,.12)]
       "
     >
       <h2 className="mb-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
@@ -13,17 +20,27 @@ function ProjectCard({ projects = [] }) {
       </h2>
 
       {projects.length === 0 ? (
-        <p className="text-sm text-slate-400">No projects</p>
+        <p className="text-sm text-slate-400">
+          No projects
+        </p>
       ) : (
-        <ul className="space-y-2">
+        <ul className="space-y-3">
           {projects.map((project, index) => (
             <li
               key={index}
               className="
-                rounded-xl border border-indigo-200 bg-indigo-50
-                px-4 py-3 text-sm font-medium text-indigo-800
+                rounded-xl
+                border border-indigo-200
+                bg-indigo-50
+                px-4 py-3
+                text-sm
+                sm:text-base
+                font-medium
+                text-indigo-800
+                break-words
                 transition-all duration-300
-                hover:bg-indigo-100 hover:scale-[1.01]
+                hover:bg-indigo-100
+                hover:scale-[1.01]
               "
             >
               {project}

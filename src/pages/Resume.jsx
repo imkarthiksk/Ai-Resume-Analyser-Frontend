@@ -124,24 +124,26 @@ function Resume() {
 
   };
 
- return (
-  <div className="min-h-screen bg-[#f8fafc] p-4 text-slate-900 md:p-6">
+return (
+  <div className="min-h-screen bg-[#f8fafc] p-3 sm:p-4 md:p-6 lg:p-8 text-slate-900">
     <div className="mx-auto max-w-6xl">
-      <div className="mb-6">
-        <h1 className="bg-gradient-to-r from-sky-700 via-blue-600 to-sky-500 bg-clip-text text-2xl font-extrabold tracking-tight text-transparent md:text-4xl">
+      <div className="mb-5 md:mb-6">
+        <h1 className="bg-gradient-to-r from-sky-700 via-blue-600 to-sky-500 bg-clip-text text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-transparent">
           AI Career Resume Analyzer
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+
+        <p className="mt-1 text-sm md:text-base text-slate-500">
           Upload your resume and receive AI-powered insights.
         </p>
       </div>
 
-      <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-[0_16px_45px_rgba(15,23,42,.07)] md:p-6">
-        <div className="grid gap-4 md:grid-cols-2 md:gap-6">
+      <div className="rounded-[28px] border border-slate-200 bg-white p-4 sm:p-5 md:p-6 shadow-[0_16px_45px_rgba(15,23,42,.07)]">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
           <div>
             <label className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-slate-500">
               Target Role
             </label>
+
             <input
               type="text"
               placeholder="e.g., Frontend Developer"
@@ -155,6 +157,7 @@ function Resume() {
             <label className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-slate-500">
               Experience Level
             </label>
+
             <select
               value={experience}
               onChange={(e) => setExperience(e.target.value)}
@@ -170,10 +173,11 @@ function Resume() {
           </div>
         </div>
 
-        <div className="mt-6">
+        <div className="mt-5 md:mt-6">
           <label className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-slate-500">
             Upload Resume (PDF)
           </label>
+
           <input
             type="file"
             accept=".pdf"
@@ -185,14 +189,14 @@ function Resume() {
         <button
           onClick={handleUpload}
           disabled={loading}
-          className="mt-6 w-full rounded-2xl bg-sky-600 px-6 py-3.5 text-sm font-semibold text-white shadow-[0_10px_25px_rgba(14,165,233,.25)] transition-all duration-300 hover:bg-sky-700 hover:shadow-[0_14px_30px_rgba(14,165,233,.35)] disabled:opacity-70 md:w-auto md:px-8"
+          className="mt-6 w-full md:w-auto rounded-2xl bg-sky-600 px-6 py-3.5 text-sm font-semibold text-white shadow-[0_10px_25px_rgba(14,165,233,.25)] transition-all duration-300 hover:bg-sky-700 hover:shadow-[0_14px_30px_rgba(14,165,233,.35)] disabled:opacity-70 md:px-8"
         >
           {loading ? "Uploading..." : "Upload & Analyze Resume"}
         </button>
 
         {analysis && (
           <>
-            <div className="mt-8 grid gap-6 lg:grid-cols-2 md:mt-10 md:gap-8">
+            <div className="mt-8 md:mt-10 grid grid-cols-1 gap-5 sm:gap-6 lg:grid-cols-2 lg:gap-8">
               <ATSScoreCard score={atsScore} />
               <StrongSkills skills={strongSkills} />
               <MissingSkills skills={missingSkills} />
@@ -202,28 +206,32 @@ function Resume() {
               <RoadmapCard roadmap={learningRoadmap} />
             </div>
 
-            <div className="mt-8 flex justify-center md:mt-10">
+            <div className="mt-8 md:mt-10 flex justify-center">
               <button
                 onClick={() => {
                   if (!role) {
                     alert("⚠ Please select your Target Role.");
                     return;
                   }
+
                   if (!experience) {
                     alert("⚠ Please select your Experience Level.");
                     return;
                   }
+
                   if (!analysis) {
                     alert(
                       "⚠ Please upload and analyze your resume before continuing."
                     );
                     return;
                   }
+
                   localStorage.setItem("role", role);
                   localStorage.setItem("experience", experience);
+
                   navigate("/interview-generator");
                 }}
-                className="w-full rounded-2xl bg-slate-900 px-6 py-3.5 text-sm font-semibold text-white shadow-[0_10px_25px_rgba(15,23,42,.25)] transition-all duration-300 hover:bg-slate-800 hover:shadow-[0_14px_30px_rgba(15,23,42,.35)] md:w-auto md:px-8"
+                className="w-full md:w-auto rounded-2xl bg-slate-900 px-6 py-3.5 text-sm font-semibold text-white shadow-[0_10px_25px_rgba(15,23,42,.25)] transition-all duration-300 hover:bg-slate-800 hover:shadow-[0_14px_30px_rgba(15,23,42,.35)] md:px-8"
               >
                 Continue →
               </button>

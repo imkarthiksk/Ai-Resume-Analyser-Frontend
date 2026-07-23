@@ -461,22 +461,25 @@ const skipRound = () => {
 };
 
 return (
-  <div className="min-h-screen bg-[#f8fafc] p-4 text-slate-900 md:p-6">
+  <div className="min-h-screen bg-[#f8fafc] p-3 sm:p-4 md:p-6 lg:p-8 text-slate-900">
     <div className="mx-auto max-w-5xl">
-      <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-[0_16px_45px_rgba(15,23,42,.07)] md:p-6">
+      <div className="rounded-[28px] border border-slate-200 bg-white p-4 sm:p-5 md:p-6 shadow-[0_16px_45px_rgba(15,23,42,.07)]">
+
         {/* Header */}
-        <div className="mb-6 flex items-center justify-between md:mb-8">
+        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between md:mb-8">
           <div>
-            <h1 className="text-xl font-bold text-slate-900 md:text-2xl">
+            <h1 className="text-xl sm:text-2xl font-bold text-slate-900">
               {currentRound.round}
             </h1>
+
             <p className="mt-1 text-sm text-slate-500">
               Round {currentRoundIndex + 1} of {interview.length}
             </p>
           </div>
+
           <button
             onClick={() => setShowSkipModal(true)}
-            className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-2.5 text-sm font-semibold text-rose-700 transition hover:bg-rose-100 md:px-6 md:py-3"
+            className="w-full sm:w-auto rounded-xl border border-rose-200 bg-rose-50 px-4 py-2.5 text-sm font-semibold text-rose-700 transition hover:bg-rose-100 md:px-6 md:py-3"
           >
             Skip Round
           </button>
@@ -485,16 +488,19 @@ return (
         {/* Progress */}
         <div className="mb-6 md:mb-8">
           <div className="flex items-end justify-between">
-            <p className="text-sm font-semibold text-slate-700 md:text-base">
+            <p className="text-sm md:text-base font-semibold text-slate-700">
               Question {currentQuestionIndex + 1} of {questions.length}
             </p>
+
             <p className="text-sm font-semibold text-sky-700">
               {Math.round(
                 ((currentQuestionIndex + 1) / questions.length) * 100
-              )}%
+              )}
+              %
             </p>
           </div>
-          <div className="mt-3 h-2.5 w-full overflow-hidden rounded-full bg-slate-100 md:h-3">
+
+          <div className="mt-3 h-2.5 md:h-3 w-full overflow-hidden rounded-full bg-slate-100">
             <div
               className="h-full bg-sky-600 transition-all duration-300"
               style={{
@@ -508,7 +514,7 @@ return (
 
         {/* Question */}
         <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 md:p-6">
-          <h2 className="text-base font-semibold leading-relaxed text-slate-900 md:text-lg">
+          <h2 className="text-base md:text-lg font-semibold leading-relaxed text-slate-900 break-words">
             {currentQuestion}
           </h2>
         </div>
@@ -519,14 +525,14 @@ return (
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
           placeholder="Type your answer..."
-          className="mt-4 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-sky-300 focus:ring-4 focus:ring-sky-100 md:mt-6 md:py-4"
+          className="mt-4 md:mt-6 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 md:py-4 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-sky-300 focus:ring-4 focus:ring-sky-100 resize-none"
         />
 
         <div className="mt-4 md:mt-6">
           <button
             onClick={submitAnswer}
             disabled={submitting}
-            className="w-full rounded-2xl bg-sky-600 px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_25px_rgba(14,165,233,.25)] transition-all duration-300 hover:bg-sky-700 hover:shadow-[0_14px_30px_rgba(14,165,233,.35)] disabled:opacity-70 md:w-auto md:px-8 md:py-3.5"
+            className="w-full md:w-auto rounded-2xl bg-sky-600 px-6 md:px-8 py-3 md:py-3.5 text-sm md:text-base font-semibold text-white shadow-[0_10px_25px_rgba(14,165,233,.25)] transition-all duration-300 hover:bg-sky-700 hover:shadow-[0_14px_30px_rgba(14,165,233,.35)] disabled:opacity-70"
           >
             {submitting ? "Checking..." : "Submit Answer"}
           </button>
@@ -534,20 +540,22 @@ return (
 
         {/* AI Feedback */}
         {feedback && (
-          <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-4 md:mt-8 md:p-6">
-            <h2 className="text-base font-bold text-slate-900 md:text-lg">
+          <div className="mt-6 md:mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-4 md:p-6">
+            <h2 className="text-base md:text-lg font-bold text-slate-900">
               AI Feedback
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-slate-700 md:text-base">
+
+            <p className="mt-3 text-sm md:text-base leading-relaxed text-slate-700 break-words">
               {feedback}
             </p>
 
             {!isCorrect && (
               <details className="mt-4">
-                <summary className="cursor-pointer text-sm font-semibold text-sky-700 md:text-base">
+                <summary className="cursor-pointer text-sm md:text-base font-semibold text-sky-700">
                   View Expected Answer
                 </summary>
-                <p className="mt-3 text-sm leading-relaxed text-slate-700 md:text-base">
+
+                <p className="mt-3 text-sm md:text-base leading-relaxed text-slate-700 break-words">
                   {expectedAnswer}
                 </p>
               </details>
@@ -556,7 +564,7 @@ return (
             {canProceed && (
               <button
                 onClick={nextQuestion}
-                className="mt-4 w-full rounded-2xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_25px_rgba(16,185,129,.25)] transition-all duration-300 hover:bg-emerald-700 hover:shadow-[0_14px_30px_rgba(16,185,129,.35)] md:w-auto md:px-8 md:py-3.5"
+                className="mt-4 w-full md:w-auto rounded-2xl bg-emerald-600 px-6 md:px-8 py-3 md:py-3.5 text-sm md:text-base font-semibold text-white shadow-[0_10px_25px_rgba(16,185,129,.25)] transition-all duration-300 hover:bg-emerald-700 hover:shadow-[0_14px_30px_rgba(16,185,129,.35)]"
               >
                 {currentQuestionIndex === questions.length - 1
                   ? currentRoundIndex === interview.length - 1
@@ -568,14 +576,16 @@ return (
           </div>
         )}
 
-        {/* Skip Round Modal */}
+        {/* Skip Modal */}
         {showSkipModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-            <div className="mx-4 w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-[0_20px_60px_rgba(15,23,42,.2)]">
-              <h2 className="text-lg font-bold text-slate-900 md:text-xl">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+            <div className="w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-[0_20px_60px_rgba(15,23,42,.2)]">
+
+              <h2 className="text-lg md:text-xl font-bold text-slate-900">
                 Skip Round?
               </h2>
-              <p className="mt-3 text-sm text-slate-600 md:text-base">
+
+              <p className="mt-3 text-sm md:text-base text-slate-600">
                 Are you sure you want to skip
                 <br />
                 <span className="font-bold text-rose-600">
@@ -583,28 +593,31 @@ return (
                 </span>
                 ?
               </p>
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+
+              <div className="mt-6 flex flex-col sm:flex-row gap-3 sm:justify-center">
+
                 <button
                   onClick={() => setShowSkipModal(false)}
-                  className="rounded-xl border border-slate-200 bg-white px-6 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 md:px-8"
+                  className="w-full sm:w-auto rounded-xl border border-slate-200 bg-white px-6 md:px-8 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
                 >
                   Cancel
                 </button>
+
                 <button
                   onClick={skipRound}
-                  className="rounded-xl bg-rose-600 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-rose-700 md:px-8"
+                  className="w-full sm:w-auto rounded-xl bg-rose-600 px-6 md:px-8 py-2.5 text-sm font-semibold text-white transition hover:bg-rose-700"
                 >
                   Skip Round
                 </button>
+
               </div>
             </div>
           </div>
         )}
+
       </div>
     </div>
   </div>
 );
-
 }
-
 export default CompanyInterview;
