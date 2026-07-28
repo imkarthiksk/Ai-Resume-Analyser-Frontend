@@ -2,6 +2,7 @@ import axios from "axios";
 
 const API = axios.create({
   baseURL: "https://ai-resume-analyser-backend-vb0m.onrender.com/api",
+ 
 });
 
 // ======================
