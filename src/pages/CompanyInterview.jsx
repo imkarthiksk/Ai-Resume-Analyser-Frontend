@@ -335,13 +335,9 @@ localStorage.setItem(
   ) || [];
 const interviewId = Date.now();
 
-const previousAttempts = history.filter(
-  (item) =>
-    item.company === company.company &&
-    item.role === company.role
-).length;
-
-const attempt = previousAttempts + 1;
+const attempt = Number(
+  localStorage.getItem(`attempt_${userId}`)
+);
 
 history.unshift({
   id: interviewId,

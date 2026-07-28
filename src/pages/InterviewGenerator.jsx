@@ -122,6 +122,16 @@ localStorage.setItem(
   `companyInterview_${userId}`,
   JSON.stringify(res.data.interview)
 );
+
+localStorage.setItem(
+  `attempt_${userId}`,
+  res.data.attempt
+);
+
+localStorage.setItem(
+  `interviewId_${userId}`,
+  res.data.interviewId
+);
 localStorage.setItem(
   `companyInterviewCompany_${userId}`,
   JSON.stringify({
