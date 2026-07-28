@@ -79,7 +79,11 @@ function History() {
                   <p className="mt-2 text-sm md:text-base font-medium text-slate-600 break-words">
                     💼 {item.role}
                   </p>
-
+<div className="mt-2 flex flex-wrap items-center gap-2">
+  <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
+    Attempt #{item.attempt || 1}
+  </span>
+</div>
                   <p className="mt-1 text-xs sm:text-sm text-slate-400">
                     📅 {item.date}
                   </p>

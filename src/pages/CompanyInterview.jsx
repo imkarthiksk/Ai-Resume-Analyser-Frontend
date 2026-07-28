@@ -31,6 +31,16 @@ const company =
   JSON.parse(
     localStorage.getItem(`companyInterviewCompany_${userId}`)
   ) || {};
+  const history =
+  JSON.parse(
+    localStorage.getItem(`interviewHistory_${userId}`)
+  ) || [];
+
+const previousAttempts = history.filter(
+  (item) =>
+    item.company === company.company &&
+    item.role === company.role
+).length;
   useEffect(() => {
 
    const userId = localStorage.getItem("userId");
@@ -39,6 +49,18 @@ const storedInterview =
   JSON.parse(
     localStorage.getItem(`companyInterview_${userId}`)
   ) || [];
+  if (previousAttempts > 0) {
+  const continueInterview = window.confirm(
+    `⚠️ You have already attended ${company.company} interview.\n\nPrevious Attempts: ${previousAttempts}\n\nThis will be Attempt ${
+      previousAttempts + 1
+    }.\n\nDo you want to continue?`
+  );
+
+  if (!continueInterview) {
+    navigate("/dashboard");
+    return;
+  }
+}
 
     setInterview(storedInterview);
 
@@ -313,37 +335,23 @@ localStorage.setItem(
   ) || [];
 const interviewId = Date.now();
 
-const alreadyExists = history.some(
-
+const previousAttempts = history.filter(
   (item) =>
-
     item.company === company.company &&
+    item.role === company.role
+).length;
 
-    item.role === company.role &&
+const attempt = previousAttempts + 1;
 
-    item.date === report.date
-
-);
-
-if (!alreadyExists) {
-
-  history.unshift({
-
-    id: interviewId,
-
-    company: company.company,
-
-    role: company.role,
-
-    date: report.date,
-
-    overallScore: report.overallScore,
-
-    report,
-
-  });
-
-}
+history.unshift({
+  id: interviewId,
+  company: company.company,
+  role: company.role,
+  date: report.date,
+  overallScore: report.overallScore,
+  report,
+  attempt,
+});
 
 localStorage.setItem(
   `interviewHistory_${userId}`,

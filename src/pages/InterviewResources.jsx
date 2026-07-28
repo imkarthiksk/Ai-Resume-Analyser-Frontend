@@ -10,6 +10,12 @@ function InterviewResources() {
   const experience = state.experience || "Fresher";
   const type = state.type || "Technical";
 
+  // Encode once, reuse everywhere — prevents broken links when
+  // company/role/location contain spaces or special characters.
+  const q = (str) => encodeURIComponent(str);
+  const companyQ = q(company);
+  const roleQ = q(role);
+
   let websites = [];
 
   if (type === "Technical") {
@@ -17,42 +23,42 @@ function InterviewResources() {
       {
         name: "Glassdoor",
         description: "Real Technical Interview Experience",
-        url: `https://www.google.com/search?q=${company}+${role}+Technical+Interview+Glassdoor`,
+        url: `https://www.glassdoor.co.in/Interview/${companyQ}-Interview-Questions-E0.htm?filter.jobTitleExact=${roleQ}`,
       },
       {
         name: "GeeksforGeeks",
         description: "Technical Interview Questions",
-        url: `https://www.google.com/search?q=${role}+GeeksforGeeks+Interview`,
+        url: `https://www.geeksforgeeks.org/?s=${roleQ}+interview+questions`,
       },
       {
         name: "InterviewBit",
         description: "Programming Interview Questions",
-        url: `https://www.google.com/search?q=${role}+InterviewBit`,
+        url: `https://www.interviewbit.com/search/?search=${roleQ}`,
       },
       {
         name: "Guru99",
         description: "Technical Questions",
-        url: `https://www.google.com/search?q=${role}+Guru99`,
+        url: `https://www.guru99.com/?s=${roleQ}+interview+questions`,
       },
       {
         name: "TutorialsPoint",
         description: "Technical Tutorials",
-        url: `https://www.google.com/search?q=${role}+TutorialsPoint`,
+        url: `https://www.tutorialspoint.com/questions/index.php?search=${roleQ}`,
       },
       {
         name: "PrepInsta",
         description: "Company Technical Questions",
-        url: `https://www.google.com/search?q=${company}+${role}+PrepInsta`,
+        url: `https://prepinsta.com/?s=${companyQ}+${roleQ}`,
       },
       {
         name: "YouTube",
         description: "Technical Mock Interview",
-        url: `https://www.youtube.com/results?search_query=${company}+${role}+Technical+Interview`,
+        url: `https://www.youtube.com/results?search_query=${companyQ}+${roleQ}+Technical+Interview`,
       },
       {
         name: "LinkedIn",
         description: "Interview Experiences",
-        url: `https://www.google.com/search?q=${company}+${role}+LinkedIn+Interview`,
+        url: `https://www.linkedin.com/search/results/content/?keywords=${companyQ}%20${roleQ}%20interview`,
       },
     ];
   } else if (type === "HR") {
@@ -60,37 +66,37 @@ function InterviewResources() {
       {
         name: "Glassdoor",
         description: "HR Interview Questions",
-        url: `https://www.google.com/search?q=${company}+${role}+HR+Interview+Glassdoor`,
+        url: `https://www.glassdoor.co.in/Interview/${companyQ}-Interview-Questions-E0.htm?filter.jobTitleExact=${roleQ}`,
       },
       {
         name: "Indeed",
         description: "HR Interview Questions",
-        url: `https://www.google.com/search?q=${company}+${role}+Indeed+Interview`,
+        url: `https://in.indeed.com/companies/search?q=${companyQ}`,
       },
       {
         name: "AmbitionBox",
         description: "HR Interview Experience",
-        url: `https://www.google.com/search?q=${company}+${role}+AmbitionBox`,
+        url: `https://www.ambitionbox.com/search?query=${companyQ}`,
       },
       {
         name: "LinkedIn",
         description: "Career Preparation",
-        url: `https://www.google.com/search?q=${role}+LinkedIn+Interview`,
+        url: `https://www.linkedin.com/search/results/content/?keywords=${roleQ}%20HR%20interview`,
       },
       {
         name: "Quora",
         description: "Real HR Experiences",
-        url: `https://www.google.com/search?q=${company}+${role}+Quora+Interview`,
+        url: `https://www.quora.com/search?q=${companyQ}+${roleQ}+HR+interview`,
       },
       {
         name: "YouTube",
         description: "HR Mock Interview",
-        url: `https://www.youtube.com/results?search_query=${role}+HR+Interview`,
+        url: `https://www.youtube.com/results?search_query=${roleQ}+HR+Interview`,
       },
       {
         name: "Google Search",
         description: "HR Questions",
-        url: `https://www.google.com/search?q=${company}+${role}+HR+Questions`,
+        url: `https://www.google.com/search?q=${companyQ}+${roleQ}+HR+Questions`,
       },
     ];
   } else if (type === "Managerial") {
@@ -98,12 +104,12 @@ function InterviewResources() {
       {
         name: "LinkedIn",
         description: "Leadership Questions",
-        url: `https://www.google.com/search?q=${company}+${role}+Managerial+Interview`,
+        url: `https://www.linkedin.com/search/results/content/?keywords=${companyQ}%20${roleQ}%20managerial%20interview`,
       },
       {
         name: "Glassdoor",
         description: "Manager Round",
-        url: `https://www.google.com/search?q=${company}+Manager+Interview+Glassdoor`,
+        url: `https://www.glassdoor.co.in/Interview/${companyQ}-Interview-Questions-E0.htm`,
       },
       {
         name: "Harvard Business Review",
@@ -113,7 +119,7 @@ function InterviewResources() {
       {
         name: "YouTube",
         description: "Managerial Interview",
-        url: `https://www.youtube.com/results?search_query=${role}+Managerial+Interview`,
+        url: `https://www.youtube.com/results?search_query=${roleQ}+Managerial+Interview`,
       },
     ];
   } else if (type === "Behavioral") {
@@ -121,22 +127,22 @@ function InterviewResources() {
       {
         name: "STAR Method",
         description: "Behavioral Interview Guide",
-        url: "https://www.google.com/search?q=STAR+Interview+Method",
+        url: "https://www.themuse.com/advice/star-interview-method",
       },
       {
         name: "Glassdoor",
         description: "Behavioral Questions",
-        url: `https://www.google.com/search?q=${company}+Behavioral+Interview`,
+        url: `https://www.glassdoor.co.in/Interview/${companyQ}-Interview-Questions-E0.htm`,
       },
       {
         name: "Indeed",
         description: "Behavioral Questions",
-        url: `https://www.google.com/search?q=${role}+Behavioral+Interview`,
+        url: `https://in.indeed.com/career-advice/interviewing/behavioral-interview-questions`,
       },
       {
         name: "YouTube",
         description: "Behavioral Mock Interview",
-        url: `https://www.youtube.com/results?search_query=${role}+Behavioral+Interview`,
+        url: `https://www.youtube.com/results?search_query=${roleQ}+Behavioral+Interview`,
       },
     ];
   } else {
@@ -144,22 +150,22 @@ function InterviewResources() {
       {
         name: "Google Search",
         description: "Interview Questions",
-        url: `https://www.google.com/search?q=${company}+${role}+Interview`,
+        url: `https://www.google.com/search?q=${companyQ}+${roleQ}+Interview`,
       },
       {
         name: "Glassdoor",
         description: "Interview Experience",
-        url: `https://www.google.com/search?q=${company}+${role}+Glassdoor`,
+        url: `https://www.glassdoor.co.in/Interview/${companyQ}-Interview-Questions-E0.htm`,
       },
       {
         name: "Indeed",
         description: "Interview Questions",
-        url: `https://www.google.com/search?q=${company}+${role}+Indeed`,
+        url: `https://in.indeed.com/companies/search?q=${companyQ}`,
       },
       {
         name: "LinkedIn",
         description: "Career Preparation",
-        url: `https://www.google.com/search?q=${role}+LinkedIn`,
+        url: `https://www.linkedin.com/search/results/content/?keywords=${roleQ}`,
       },
     ];
   }
@@ -269,4 +275,4 @@ return (
 );
 }
 
-export default InterviewResources; 
+export default InterviewResources;

@@ -25,7 +25,10 @@ function ATSScoreCard({ score }) {
 
       <div className="flex items-center justify-center">
         <div className="relative h-32 w-32 sm:h-36 sm:w-36 md:h-40 md:w-40">
-          <svg className="h-32 w-32 -rotate-90 sm:h-36 sm:w-36 md:h-40 md:w-40">
+          <svg
+            viewBox="0 0 160 160"
+            className="h-32 w-32 -rotate-90 sm:h-36 sm:w-36 md:h-40 md:w-40"
+          >
             <circle
               cx="80"
               cy="80"
